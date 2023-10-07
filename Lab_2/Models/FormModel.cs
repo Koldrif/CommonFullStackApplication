@@ -1,6 +1,6 @@
 ﻿namespace Lab_2.Models
 {
-	public class Form
+	public class FormModel
 	{
 		public string Name { get; set; }
 		public string Surname { get; set; }

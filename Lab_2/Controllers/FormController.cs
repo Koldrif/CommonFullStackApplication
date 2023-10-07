@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lab_2.Controllers
 {
+	[ApiController]
 	public class FormController : ControllerBase
 	{
 		[HttpPost]
 		[Route("/SendRequest")]
-		public IActionResult AcceptForm([FromForm] Form form)
+		public IActionResult AcceptForm(FormModel formModel)
 		{
-			return Ok(form);
+			return Ok(formModel);
 		}
 	}
 }
