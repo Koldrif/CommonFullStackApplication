@@ -9,32 +9,33 @@
     <script src='./main.js'></script>
 </head>
 <body>
-
-<form action="http://localhost:5176/sendForm" method="get">
-    <div>
-        Введите имя
-        <input type="text" placeholder="Enter your first name" id="name">
-    </div>
-    <div>
-        Введите фамилию
-        <input type="text" placeholder="Enter your second name" id="second-name">
-    </div>
-    <div>
-        Введите возраст
-        <input type="number" placeholder="Enter your age" id="age">
-    </div>
-    <div>
-        Выберите ваш пол
-        <select name="sex" id="sex-select">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="notSelected">No</option>
-        </select>
-    </div>
-    <div>
-        <input type="button" onclick="SendForm()" value="Отправить">
-    </div>
-</form>
+<div>
+    <form action="http://localhost:5176/sendForm" method="post">
+        <div>
+            Введите имя
+            <input type="text" placeholder="Enter your first name" id="name">
+        </div>
+        <div>
+            Введите фамилию
+            <input type="text" placeholder="Enter your second name" id="second-name">
+        </div>
+        <div>
+            Введите возраст
+            <input type="number" placeholder="Enter your age" id="age">
+        </div>
+        <div>
+            Выберите ваш пол
+            <select name="sex" id="sex-select">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="notSelected">No</option>
+            </select>
+        </div>
+        <div>
+            <input type="button" onclick="SendForm()" value="Отправить">
+        </div>
+    </form>
+</div>
        
 </body>
 </html>
