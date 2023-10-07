@@ -1,25 +1,58 @@
-const sendFormAddress = "http://localhost:5176/SendRequest"
+const sendFormAddress = "http://localhost:5176/SendRequest";
+const sendGetFormAddress = "http://localhost:5176/";
+
 
 async function SendForm()
 {
     let user = {
-        "Name" : "",
-        "Surname" : "",
-        "Age" : -1,
-        "Sex" : 2
+        Name : "",
+        Surname : "",
+        Age : -1,
+        Sex : 2
     }
 
-    user.Name = document.getElementById("name");
-    user.Surname = document.getElementById("second-name");
-    user.Age = document.getElementById("age");
-    user.Sex = document.getElementById("sex-select")
+    user.Name = document.getElementById("name").value;
+    user.Surname = document.getElementById("second-name").value;
+    user.Age = parseInt(document.getElementById("age").value, 10);
+    user.Sex = parseInt(document.getElementById("sex-select").value, 10);
 
-    const response = await fetch(sendFormAddress, {
-        mode: "no-cors",
-        method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(user)
-    });
-    const message = await response.json();
-    document.getElementById("message").innerText = message.text;
+
+    XhrSendPost(user)
+}
+
+function XhrSendPost(data)
+{
+    // let xhr = new XMLHttpRequest();
+    // xhr.open("POST", sendFormAddress)
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.send(data)
+
+    var form = {
+        Name: "John",
+        Surname: "Doe",
+        Age: 30,
+        Sex: 1
+    };
+
+    var ss = JSON.stringify(data);
+
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', sendFormAddress, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log("Запрос успешно выполнен");
+        } else {
+            console.error("Ошибка при выполнении запроса:", xhr.status, xhr.statusText);
+        }
+    };
+    
+    xhr.onerror = function () {
+        console.error("Произошла ошибка при выполнении запроса");
+    };
+    
+    var jsonPayload = JSON.stringify(data);
+    xhr.send(jsonPayload);
 }
