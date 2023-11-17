@@ -7,11 +7,11 @@ namespace Lab_2.Controllers
 	[ApiController]
 	public class FormController : ControllerBase
 	{
-		[HttpPost]
-		[Route("/SendRequest")]
-		public IActionResult AcceptForm(FormModel formModel)
-		{
-			return Ok(formModel);
-		}
+		//[HttpPost]
+		//[Route("/SendRequest")]
+		//public IActionResult AcceptForm(FormModel formModel)
+		//{
+		//	return Ok(formModel);
+		//}
 	}
 }
