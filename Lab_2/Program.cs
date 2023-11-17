@@ -19,7 +19,7 @@ app.UseCors(
 
 app.UseStaticFiles(new StaticFileOptions()
 {
-	FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "client")),
+	FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "forms")),
 	RequestPath = ""
 });
 
