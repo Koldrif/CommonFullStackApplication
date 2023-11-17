@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>  
+<html>
+<head>
+  <title>Форма для заполнения</title>
+  <meta charset="utf-8" />
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  input[type=text], select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    border: 1px solid #000;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+  input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+</style>
+<body>  
+
+<h2>Заполните форму студента</h2>
+<div class="container">
+  <form method="post" action="form" id="form">  
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Фамилия</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="lname" name="lastname" placeholder="Фамилия">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Имя</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="firstname" placeholder="Имя">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="patr">Отчество</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="patr" name="patronymic" placeholder="Отчество">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="ph">Телефон</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ph" name="phone" placeholder="+7(999)999-99-99">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="mail">E-mail</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="mail" name="email" placeholder="E-mail">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="gr">Группа</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="gr" name="group" placeholder="ББББ-ЧЧ-ЧЧ">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="year">Курс</label>
+      </div>
+      <div class="col-75">
+        <input type="radio" name="year" value="1" />
+        <label for="year">1</label>
+        <input type="radio" name="year" value="2" />
+        <label for="year">2</label>
+        <input type="radio" name="year" value="3" />
+        <label for="year">3</label>
+        <input type="radio" name="year" value="4" />
+        <label for="year">4</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="inst">Институт</label>
+      </div>
+      <div class="col-75">
+        <select id="inst" name="inst">
+          <option selected="selected" value="iit">Институт информационных технологий</option>
+          <option value="iii">Институт искуственного интеллекта</option>
+          <option value="сyber">Институт кибербезопасности и цифровых технологий</option>
+          <option value="tech">Институт перспективных технологий и индустриального программирования</option>
+          <option value="radio">Институт радиоэлектроники и информатики</option>
+          <option value="management">Институт технологий управления</option>
+          <option value="chemistry">Институт тонких химических технологий им. М.В. Ломоносова</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" id="button" name="send" value="Отправить"/>
+    </div>
+    
+  </form>
+</div>
+
+<script>
+
+  //в ФИО содержится числа
+  function fio_valid(value){
+    var pattern = /^([^0-9]*)$/;
+    return pattern.test(value);
+
+  }
+
+  //проверка телефона
+  function phone_valid(value){
+    var patter = /\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/;
+    return patter.test(value);
+  }
+
+  //проверка группы
+  function gr_valid(value){
+    var patter = /[А-Я]{4}-\d{2}-\d{2}/;
+    return patter.test(value);
+  }
+
+
+  document.getElementById("form").addEventListener("submit", function(event){
+    event.preventDefault();
+    var surname = document.getElementById("lname")
+    var name = document.getElementById("fname");
+    var par = document.getElementById("patr");
+    var phone = document.getElementById("ph");
+    var mail = document.getElementById("mail");
+    var gr = document.getElementById("gr");
+    
+    document.getElementById("lname").style = "border: 1px solid #000;";
+    document.getElementById("fname").style = "border: 1px solid #000;";
+    document.getElementById("gr").style = "border: 1px solid #000;";
+    document.getElementById("ph").style = "border: 1px solid #000;";
+    document.getElementById("gr").style = "border: 1px solid #000;";
+
+    if(surname.value === '' && name.value === '' && gr.value === ''){
+      document.getElementById("lname").style = "border: 2px solid #f00;";
+      document.getElementById("fname").style = "border: 2px solid #f00;";
+      document.getElementById("gr").style = "border: 2px solid #f00;";
+      alert("Заполните обязательные поля");
+      return;
+    }
+    if(!fio_valid(surname.value) || !fio_valid(name.value) || !fio_valid(par.value)){
+      alert("В ФИО содержатся числа");
+      return;
+    }
+    //if(!phone_valid(phone.value)){
+    //  alert("Неверно введен номер телефона");
+    //  document.getElementById("ph").style = "border: 2px solid #f00;";
+    //  return;
+    //}
+
+    if(!gr_valid(gr.value)){
+      alert("Неверно введена группа");
+      document.getElementById("gr").style = "border: 2px solid #f00;";
+      return;
+    }
+
+    this.submit();
+  });
+  
+//  var sendButton = document.form.send;
+//  sendButton.addEventListener("click", sendForm);
+</script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Lab_2
+build_property.RootNamespace = Lab_2
+build_property.ProjectDir = F:\Рабочее пространство\Универ\Магистратура\2 курс 1 сем\Управление информационно-технологической инфраструктурой и архитектурой\Lab_2\Lab_2\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\Рабочее пространство\Универ\Магистратура\2 курс 1 сем\Управление информационно-технологической инфраструктурой и архитектурой\Lab_2\Lab_2
+build_property._RazorSourceGeneratorDebug = 
