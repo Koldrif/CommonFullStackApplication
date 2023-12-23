@@ -7,12 +7,8 @@ WORKDIR /Application
 
 # Скопируем все файлы из проекта в файловую систему контейнера
 COPY . ./
-
-RUN apt update
-
-RUN apt install -y dotnet-sdk-7.0
 # Запустим restore для загрузки зависимостей
-#RUN dotnet restore
+RUN dotnet restore
 # Опубликуем собранный dll в папку "output"
 RUN dotnet publish -c Release -o output
 
@@ -24,4 +20,4 @@ WORKDIR /Application
 # Скопируем файлы приложения из предыдущего образа 
 COPY --from=builder /Application/output .
 # укажем команду, которая будет запускать приложение
-ENTRYPOINT ["dotnet", "dotnet-app.dll"]
+ENTRYPOINT ["dotnet", "Lab_2.dll"]
