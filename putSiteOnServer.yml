@@ -1,0 +1,148 @@
+- name: Docker container to server
+
+  hosts: myhosts
+
+  become: 'yes'
+
+  tasks:
+
+    - name: Update apt cache
+
+      apt:
+
+        update_cache: yes
+
+        cache_valid_time: 3600
+
+
+
+    - name: Install dependencies
+
+      apt:
+
+        name: '{{ packages }}'
+
+        state: present
+
+        update_cache: yes
+
+      vars:
+
+        packages:
+
+          - apt-transport-https
+
+          - ca-certificates
+
+          - curl
+
+          - software-properties-common
+
+          - gnupg-agent
+
+          - python3-pip
+
+          - virtualenv
+
+          - python3-setuptools
+
+
+
+    - name: Add an apt signing key for Docker
+
+      apt_key:
+
+        url: 'https://download.docker.com/linux/ubuntu/gpg'
+
+        state: present
+
+
+
+    - name: Add apt repository for stable version
+
+      apt_repository:
+
+        repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'
+
+        state: present
+
+
+
+    - name: Install Docker
+
+      apt:
+
+        name: '{{ packages }}'
+
+        state: present
+
+        update_cache: yes
+
+      vars:
+
+        packages:
+
+          - docker-ce
+
+          - docker-ce-cli
+
+          - containerd.io
+
+
+
+    - name: Add user to docker group
+
+      user:
+
+        name: '{{ansible_user}}'
+
+        group: docker
+
+
+
+    - name: Install Python Docker Module
+
+      pip:
+
+        name: docker
+
+
+
+    - name: Copy Image
+
+      copy:
+
+        src: /lab_2.zip
+
+        dest: /home/igor/lab_2.zip
+
+
+
+    - name: Load container from tarball
+
+      docker_image:
+
+        name: lab_2:latest
+
+        load_path: /home/igor/lab_2.zip
+
+        state: present
+
+        source: load
+
+
+
+    - name: Run Container
+
+      docker_container:
+
+        name: lab_2
+
+        image: lab_2
+
+        state: started
+
+        ports:
+
+          - "5000:80"
+
