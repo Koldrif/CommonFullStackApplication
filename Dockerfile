@@ -10,7 +10,7 @@ COPY . ./
 
 RUN apt update
 
-RUN apt install dotnet-sdk-7.0
+RUN apt install -y dotnet-sdk-7.0
 # Запустим restore для загрузки зависимостей
 #RUN dotnet restore
 # Опубликуем собранный dll в папку "output"
