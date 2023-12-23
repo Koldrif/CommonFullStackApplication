@@ -8,7 +8,7 @@ WORKDIR /Application
 # Скопируем все файлы из проекта в файловую систему контейнера
 COPY . ./
 # Запустим restore для загрузки зависимостей
-RUN dotnet restore
+#RUN dotnet restore
 # Опубликуем собранный dll в папку "output"
 RUN dotnet publish -c Release -o output
 
