@@ -8,7 +8,6 @@ WORKDIR /Application
 # Скопируем все файлы из проекта в файловую систему контейнера
 COPY . ./
 
-RUN rm /etc/apt/sources.list.d/microsoft-prod.list
 RUN apt update
 
 RUN apt install dotnet-sdk-7.0
