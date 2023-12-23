@@ -7,6 +7,14 @@ WORKDIR /Application
 
 # Скопируем все файлы из проекта в файловую систему контейнера
 COPY . ./
+
+RUN apt remove dotnet*
+RUN apt remove aspnetcore*
+
+RUN rm /etc/apt/sources.list.d/microsoft-prod.list
+RUN apt update
+
+RUN apt install dotnet-sdk-7.0
 # Запустим restore для загрузки зависимостей
 #RUN dotnet restore
 # Опубликуем собранный dll в папку "output"
